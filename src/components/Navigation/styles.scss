@@ -1,0 +1,62 @@
+@import "~bootstrap/scss/bootstrap";
+
+.mb-nav {
+  padding: 40px 20px;
+  width: 20vw;
+  height: 100%;
+  border-right: 3px solid #c2c2c2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .mb-logo {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .mb-nav-links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 0;
+
+    .mb-nav-link {
+      width: 95%;
+      font-size: 1.3rem;
+      padding: 15px;
+      margin: 10px 0;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      border: none;
+
+      .mb-icon {
+        margin-right: 10px;
+        font-size: 26px;
+      }
+    }
+  }
+
+  .mb-profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 350px;
+
+    .mb-profile-pic {
+      width: 200px;
+      border-radius: 50%;
+    }
+  }
+
+  .mb-all-rights {
+    color: $secondary;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+}
