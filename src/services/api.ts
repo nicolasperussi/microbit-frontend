@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const environments = {
-  development: "http://localhost:443/api/v1",
+  development: "http://localhost:3030/api/v1",
   production: "https://schoolmicrobit.herokuapp.com/api/v1",
 };
 export const api = axios.create({

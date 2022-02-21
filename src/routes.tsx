@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Authentication from "./pages/Authentication";
 import Classes from "./pages/Classes";
+import Courses from "./pages/Courses";
 import Home from "./pages/Home";
 import Reports from "./pages/Reports";
 import { isAuthenticated } from "./services/auth";
@@ -49,6 +50,16 @@ const Routes = () => {
             <>
               <RequireAuth>
                 <Classes />
+              </RequireAuth>
+            </>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <>
+              <RequireAuth>
+                <Courses />
               </RequireAuth>
             </>
           }

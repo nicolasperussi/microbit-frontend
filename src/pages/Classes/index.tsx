@@ -21,7 +21,7 @@ const Classes = () => {
   return (
     <>
       <Navigation />
-      <div className="p-3 container">
+      <div className="container">
         <header className="d-flex container justify-content-between align-items-center">
           <h1>Turmas</h1>
           <button className="btn btn-lg btn-primary">Nova Turma</button>
@@ -39,6 +39,7 @@ const Classes = () => {
                 </thead>
                 <tbody>
                   {students.map((student: IStudent) => {
+                    // eslint-disable-next-line array-callback-return
                     return student.classes.map((studClass) => {
                       console.log(studClass === classObj._id);
                       if (studClass === classObj._id)

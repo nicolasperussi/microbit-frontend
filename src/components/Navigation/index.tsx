@@ -25,13 +25,13 @@ const Navigation = () => {
     <nav className="mb-nav">
       <div className="mb-nav-links">
         <Link
-          className={`btn btn-lg ${checkRoute("/", location.pathname)} mb-nav-link `}
+          className={`btn ${checkRoute("/", location.pathname)} mb-nav-link `}
           to="/"
         >
           <MdDashboard className="mb-icon" /> Página Inicial
         </Link>
         <Link
-          className={`btn btn-lg ${checkRoute(
+          className={`btn ${checkRoute(
             "/reports",
             location.pathname
           )} mb-nav-link`}
@@ -40,13 +40,22 @@ const Navigation = () => {
           <MdInsertDriveFile className="mb-icon" /> Semanários
         </Link>
         <Link
-          className={`btn btn-lg ${checkRoute(
+          className={`btn ${checkRoute(
             "/classes",
             location.pathname
           )} mb-nav-link`}
           to="/classes"
         >
           <MdInsertDriveFile className="mb-icon" /> Turmas
+        </Link>
+        <Link
+          className={`btn ${checkRoute(
+            "/courses",
+            location.pathname
+          )} mb-nav-link`}
+          to="/courses"
+        >
+          <MdInsertDriveFile className="mb-icon" /> Cursos
         </Link>
       </div>
       <div className="mb-profile-wrapper">
