@@ -39,6 +39,15 @@ const Navigation = () => {
         >
           <MdInsertDriveFile className="mb-icon" /> Semanários
         </Link>
+        <Link
+          className={`btn btn-lg ${checkRoute(
+            "/classes",
+            location.pathname
+          )} mb-nav-link`}
+          to="/classes"
+        >
+          <MdInsertDriveFile className="mb-icon" /> Turmas
+        </Link>
       </div>
       <div className="mb-profile-wrapper">
         <img className="mb-profile-pic" src={profilePicture} alt="profile" />
