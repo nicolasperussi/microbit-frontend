@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
-import IClass from "../../interfaces/classInterface";
-import IStudent from "../../interfaces/studentInterface";
 import { api } from "../../services/api";
 import "./styles.scss";
 
@@ -19,44 +18,29 @@ const Classes = () => {
   }, []);
 
   return (
-    <>
+    <div className="fullPage">
       <Navigation />
-      <div className="container">
-        <header className="d-flex container justify-content-between align-items-center">
+      <div className="p-3 page-container">
+        <header className="d-flex container justify-content-between align-items-center mb-5">
           <h1>Turmas</h1>
           <button className="btn btn-lg btn-primary">Nova Turma</button>
         </header>
-        <div className="row">
-          {classes.map((classObj: IClass) => (
-            <div key={classObj._id} className="col-xs-6 col-md-6">
-              <table className="table">
-                <thead className="thead-dark">
-                  <tr>
-                    <th scope="col">
-                      {classObj.course}, {classObj.time}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {students.map((student: IStudent) => {
-                    // eslint-disable-next-line array-callback-return
-                    return student.classes.map((studClass) => {
-                      console.log(studClass === classObj._id);
-                      if (studClass === classObj._id)
-                        return (
-                          <tr>
-                            <td>{student.name}</td>
-                          </tr>
-                        );
-                    });
-                  })}
-                </tbody>
-              </table>
-            </div>
-          ))}
+        <div className="d-flex container row gap-5">
+          <Link
+            to="/classes/english"
+            className="d-flex justify-content-center align-items-center btn btn-lg btn-danger course-link"
+          >
+            Inglês
+          </Link>
+          <Link
+            to="/classes/computing"
+            className="d-flex justify-content-center align-items-center btn btn-lg btn-success course-link"
+          >
+            Informática
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

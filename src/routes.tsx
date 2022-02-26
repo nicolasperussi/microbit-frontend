@@ -7,9 +7,11 @@ import {
 } from "react-router-dom";
 import Authentication from "./pages/Authentication";
 import Classes from "./pages/Classes";
+import EnglishClasses from "./pages/Classes/English";
 import Courses from "./pages/Courses";
 import Home from "./pages/Home";
 import Reports from "./pages/Reports";
+import Students from "./pages/Students";
 import { isAuthenticated } from "./services/auth";
 
 const Routes = () => {
@@ -25,7 +27,7 @@ const Routes = () => {
           }
         />
         <Route
-          path="/"
+          path="/home"
           element={
             <>
               <RequireAuth>
@@ -55,6 +57,16 @@ const Routes = () => {
           }
         />
         <Route
+          path="/students"
+          element={
+            <>
+              <RequireAuth>
+                <Students />
+              </RequireAuth>
+            </>
+          }
+        />
+        <Route
           path="/courses"
           element={
             <>
@@ -64,6 +76,17 @@ const Routes = () => {
             </>
           }
         />
+        <Route
+          path="/classes/english"
+          element={
+            <>
+              <RequireAuth>
+                <EnglishClasses />
+              </RequireAuth>
+            </>
+          }
+        />
+        <Route path="/" element={<Navigate to="/home" replace />} />
       </Switch>
     </BrowserRouter>
   );

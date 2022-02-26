@@ -3,11 +3,7 @@ import Routes from "./routes";
 import "./global.scss";
 
 function App() {
-  return (
-    <div className="page-container">
-      <Routes />
-    </div>
-  );
+  return <Routes />;
 }
 
 export default App;

@@ -3,16 +3,14 @@ import React, { useState } from "react";
 import "./styles.scss";
 
 import { Link, useLocation } from "react-router-dom";
-import { MdDashboard, MdInsertDriveFile } from "react-icons/md";
+import { MdDashboard, MdInsertDriveFile, MdVerifiedUser } from "react-icons/md";
 
 import DefaultPicture from "../../assets/default-profile-picture.png";
 import Button from "react-bootstrap/Button";
 import { getUser, logout } from "../../services/auth";
 
 const checkRoute = (route: string, location: string): String => {
-  return location === route
-    ? "btn-primary"
-    : "btn-outline-primary";
+  return location.includes(route) ? "btn-primary" : "btn-outline-primary";
 };
 
 const Navigation = () => {
@@ -25,7 +23,7 @@ const Navigation = () => {
     <nav className="mb-nav">
       <div className="mb-nav-links">
         <Link
-          className={`btn ${checkRoute("/", location.pathname)} mb-nav-link `}
+          className={`btn ${checkRoute("/home", location.pathname)} mb-nav-link `}
           to="/"
         >
           <MdDashboard className="mb-icon" /> Página Inicial
@@ -47,6 +45,15 @@ const Navigation = () => {
           to="/classes"
         >
           <MdInsertDriveFile className="mb-icon" /> Turmas
+        </Link>
+        <Link
+          className={`btn ${checkRoute(
+            "/students",
+            location.pathname
+          )} mb-nav-link`}
+          to="/students"
+        >
+          <MdVerifiedUser className="mb-icon" /> Alunos
         </Link>
         <Link
           className={`btn ${checkRoute(

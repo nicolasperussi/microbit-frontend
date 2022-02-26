@@ -3,10 +3,15 @@ import Navigation from "../../components/Navigation";
 
 const Reports = () => {
   return (
-    <>
+    <div className="fullPage">
       <Navigation />
-      <h1>Hello reports!</h1>
-    </>
+      <div className="p-3 page-container">
+        <header className="d-flex container justify-content-between align-items-center">
+          <h1>Semanários</h1>
+          {/* <button className="btn btn-lg btn-primary">Novo Curso</button> */}
+        </header>
+      </div>
+    </div>
   );
 };
 
