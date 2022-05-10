@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Omit, BsPrefixProps } from "react-bootstrap/esm/helpers";
 import Modal, { ModalProps } from "react-bootstrap/modal";
+import { MdAdd as PlusIcon } from "react-icons/md";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { api } from "../../../services/api";
+import IClass from "../../../interfaces/classInterface";
 
 const NewStudentModal = (
   props: JSX.IntrinsicAttributes &
@@ -25,8 +28,23 @@ const NewStudentModal = (
     BsPrefixProps<"div"> &
     ModalProps & { children?: React.ReactNode }
 ) => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('')
+  // User Info
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [classes, setClasses] = useState<Array<string>>([]);
+
+  const [twoClasses, setTwoClasses] = useState(false);
+
+  const createStudent = async (
+    name: string,
+    phone: string,
+    classes: Array<string>
+  ) => {
+    console.log({ name, phone, classes });
+    api.post("/students", { name, phone, classes });
+    props.closemodal();
+    window.location.reload();
+  };
 
   return (
     <Modal
@@ -41,7 +59,7 @@ const NewStudentModal = (
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form className='col-8'>
+        <Form className="col-8">
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Nome Completo</Form.Label>
             <Form.Control
@@ -59,13 +77,62 @@ const NewStudentModal = (
               onChange={(e) => setPhone(e.target.value)}
             />
           </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPhone">
+            <Form.Label>Turmas</Form.Label>
+            <Form.Select
+            className="mb-3"
+              defaultValue=""
+              onChange={(e) => {
+                setClasses(prev => [...prev, e.target.value]);
+              }}
+            >
+              <option disabled value="">
+                Selecione uma turma
+              </option>
+              {props.classes.map((classObj: IClass) => (
+                <option value={classObj._id} key={classObj._id}>
+                  {classObj.course === "english" ? "Inglês" : "Informática"},{" "}
+                  {classObj.time}
+                </option>
+              ))}
+            </Form.Select>
+            {twoClasses ? (
+              <Form.Select
+                defaultValue=""
+                onChange={(e) => {
+                  setClasses(prev => [...prev, e.target.value]);
+                }}
+              >
+                <option disabled value="">
+                  Selecione uma turma
+                </option>
+                {props.classes.map((classObj: IClass) => (
+                  <option value={classObj._id} key={classObj._id}>
+                    {classObj.course === "english" ? "Inglês" : "Informática"},{" "}
+                    {classObj.time}
+                  </option>
+                ))}
+              </Form.Select>
+            ) : (
+              <Button
+                onClick={() => setTwoClasses(true)}
+                variant="outline-success"
+              >
+                <PlusIcon style={{ fontSize: 20 }} />
+              </Button>
+            )}
+          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>
           Fechar
         </Button>
-        <Button variant="primary" onClick={() => props.createStudent(name, phone)}>
+        <Button
+          variant="primary"
+          onClick={() => createStudent(name, phone, classes)}
+        >
           Cadastrar
         </Button>
       </Modal.Footer>

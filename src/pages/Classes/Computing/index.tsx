@@ -5,13 +5,13 @@ import IClass from "../../../interfaces/classInterface";
 import ClassTable from "../../../components/ClassTable";
 import IStudent from "../../../interfaces/studentInterface";
 
-const EnglishClasses = () => {
+const ComputingClasses = () => {
   const [classes, setClasses] = useState<IClass[] | never[]>([]);
   const [students, setStudents] = useState<IStudent[] | never[]>([]);
 
   useEffect(() => {
     api
-      .get("/classes/course/english")
+      .get("/classes/course/computing")
       .then((res) => setClasses(res.data.classes));
     api.get("/students").then((res) => setStudents(res.data.students));
   }, []);
@@ -21,11 +21,11 @@ const EnglishClasses = () => {
       <Navigation />
       <div className="p-3 page-container">
         <header className="d-flex fluid-container justify-content-between align-items-center mb-5">
-          <h1>Turmas de Inglês</h1>
+          <h1>Turmas de Informática</h1>
           {/* <button classN  ame="btn btn-lg btn-primary">Novo Curso</button> */}
         </header>
 
-        <div className="d-flex fluid-container align-content-center row gap-5 px-3">
+        <div className="d-flex container row d-flex fluid-container align-content-center row gap-5 px-3gap-5">
           {classes.map((classObj) => {
             return (
               <ClassTable
@@ -46,4 +46,4 @@ const EnglishClasses = () => {
   );
 };
 
-export default EnglishClasses;
+export default ComputingClasses;

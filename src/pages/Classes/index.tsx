@@ -21,11 +21,12 @@ const Classes = () => {
     <div className="fullPage">
       <Navigation />
       <div className="p-3 page-container">
-        <header className="d-flex container justify-content-between align-items-center mb-5">
+        <header className="d-flex fluid-container justify-content-between align-items-center mb-5">
           <h1>Turmas</h1>
           <button className="btn btn-lg btn-primary">Nova Turma</button>
         </header>
-        <div className="d-flex container row gap-5">
+
+        <div className="d-flex fluid-container align-content-center row gap-5 px-3">
           <Link
             to="/classes/english"
             className="d-flex justify-content-center align-items-center btn btn-lg btn-danger course-link"
@@ -39,6 +40,7 @@ const Classes = () => {
             Informática
           </Link>
         </div>
+
       </div>
     </div>
   );

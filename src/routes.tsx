@@ -1,14 +1,16 @@
 import React from "react";
 import {
-  BrowserRouter,
+  HashRouter as Router,
   Routes as Switch,
   Route,
   Navigate,
 } from "react-router-dom";
 import Authentication from "./pages/Authentication";
 import Classes from "./pages/Classes";
+import ComputingClasses from "./pages/Classes/Computing";
 import EnglishClasses from "./pages/Classes/English";
 import Courses from "./pages/Courses";
+import ComputingCourse from "./pages/Courses/Computing";
 import Home from "./pages/Home";
 import Reports from "./pages/Reports";
 import Students from "./pages/Students";
@@ -16,7 +18,7 @@ import { isAuthenticated } from "./services/auth";
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Switch>
         <Route
           path="/login"
@@ -47,16 +49,6 @@ const Routes = () => {
           }
         />
         <Route
-          path="/classes"
-          element={
-            <>
-              <RequireAuth>
-                <Classes />
-              </RequireAuth>
-            </>
-          }
-        />
-        <Route
           path="/students"
           element={
             <>
@@ -77,6 +69,26 @@ const Routes = () => {
           }
         />
         <Route
+          path="/courses/computing"
+          element={
+            <>
+              <RequireAuth>
+                <ComputingCourse />
+              </RequireAuth>
+            </>
+          }
+        />
+        <Route
+          path="/classes"
+          element={
+            <>
+              <RequireAuth>
+                <Classes />
+              </RequireAuth>
+            </>
+          }
+        />
+        <Route
           path="/classes/english"
           element={
             <>
@@ -86,9 +98,19 @@ const Routes = () => {
             </>
           }
         />
+        <Route
+          path="/classes/computing"
+          element={
+            <>
+              <RequireAuth>
+                <ComputingClasses />
+              </RequireAuth>
+            </>
+          }
+        />
         <Route path="/" element={<Navigate to="/home" replace />} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
