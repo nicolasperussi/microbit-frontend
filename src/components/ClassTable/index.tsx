@@ -20,7 +20,7 @@ const ClassTable = ({ _id, course, teacher, time, students }: IClass) => {
       <thead>
         <tr>
           <th>
-            {course}, {time}
+            {time}, Professor {teacher}
           </th>
         </tr>
         <tr>

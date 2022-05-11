@@ -14,7 +14,7 @@ const checkRoute = (route: string, location: string): String => {
 };
 
 const Navigation = () => {
-  const [profilePicture, setProfilePicture] = useState(DefaultPicture);
+  const [profilePicture] = useState(DefaultPicture);
   const user = getUser();
 
   const location = useLocation();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Omit, BsPrefixProps } from "react-bootstrap/esm/helpers";
-import Modal, { ModalProps } from "react-bootstrap/modal";
+import Modal, { ModalProps } from "react-bootstrap/Modal";
 import { MdAdd as PlusIcon } from "react-icons/md";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
