@@ -31,7 +31,7 @@ const NewClassModal = (
   const [time, setTime] = useState("");
 
   const createClass = (teacher: string, course: string, time: string) => {
-    console.log("Nova turma" + { teacher, course, time });
+    api.post("/classes", { teacher, course, time }).then(props.closeModal());
   };
 
   return (
@@ -43,18 +43,18 @@ const NewClassModal = (
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Cadastrar Novo Aluno
+          Cadastrar Nova Turma
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className="col-8">
           <Form.Group className="mb-3" controlId="formBasicTeacher">
-            <Form.Label>Matéria</Form.Label>
+            <Form.Label>Professor</Form.Label>
             <Form.Select
               className="mb-3"
               defaultValue=""
               onChange={(e) => {
-                console.log(e.target.value);
+                setTeacher(e.target.value);
               }}
             >
               <option disabled value="">
@@ -73,7 +73,7 @@ const NewClassModal = (
               className="mb-3"
               defaultValue=""
               onChange={(e) => {
-                console.log(e.target.value);
+                setCourse(e.target.value);
               }}
             >
               <option disabled value="">
@@ -89,7 +89,7 @@ const NewClassModal = (
             <Form.Control
               type="text"
               placeholder="Horário das aulas"
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => setTime(e.target.value)}
             />
           </Form.Group>
         </Form>

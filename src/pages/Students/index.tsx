@@ -48,9 +48,11 @@ const Students = () => {
             </thead>
             <tbody>
               {students.map((student: IStudent) => {
-                let studentClasses: any = classes.filter((c: IClass) =>
-                  student.classes.includes(c._id)
-                );
+                let studentClasses: any = classes
+                  .filter((c: IClass) => student.classes.includes(c._id))
+                  .sort((a: IClass, b: IClass) =>
+                    a.time.toLowerCase().localeCompare(b.time.toLowerCase())
+                  );
 
                 return (
                   <tr key={student._id}>

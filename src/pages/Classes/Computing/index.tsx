@@ -22,10 +22,10 @@ const ComputingClasses = () => {
       <div className="p-3 page-container">
         <header className="d-flex fluid-container justify-content-between align-items-center mb-5">
           <h1>Turmas de Informática</h1>
-          {/* <button classN  ame="btn btn-lg btn-primary">Novo Curso</button> */}
+          {/* <button className="btn btn-lg btn-primary">Novo Curso</button> */}
         </header>
 
-        <div className="d-flex container row d-flex fluid-container align-content-center row gap-5 px-3gap-5">
+        <div className="d-flex container row d-flex fluid-container align-content-center row gap-5 px-3 gap-5">
           {classes.map((classObj) => {
             return (
               <ClassTable

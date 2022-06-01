@@ -15,7 +15,7 @@ const ClassTable = ({ _id, course, teacher, time, students }: IClass) => {
 
   course = course === "english" ? "Inglês" : "Informática";
 
-  return students!.length !== 0 ? (
+  return (
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -37,7 +37,7 @@ const ClassTable = ({ _id, course, teacher, time, students }: IClass) => {
         ))}
       </tbody>
     </Table>
-  ) : null;
+  );
 };
 
 export default ClassTable;
