@@ -7,6 +7,8 @@ import { api } from "../../services/api";
 import "./styles.scss";
 import IClass from "../../interfaces/classInterface";
 import { Link } from "react-router-dom";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { Button } from "react-bootstrap";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -44,6 +46,7 @@ const Students = () => {
                 <th>Nome</th>
                 <th>Celular</th>
                 <th>Turmas</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -72,6 +75,22 @@ const Students = () => {
                           </Link>
                         );
                       })}
+                    </td>
+                    <td>
+                      <Button
+                        variant="outline-warning"
+                        className="mx-2"
+                        // onClick=(() => showModal(message, functionToExecuteOnConfirmation))
+                      >
+                        <MdEdit />
+                      </Button>
+                      <Button
+                        variant="outline-danger"
+                        className="mx-2"
+                        // onClick=(() => showModal(message, functionToExecuteOnConfirmation))
+                      >
+                        <MdDelete />
+                      </Button>
                     </td>
                   </tr>
                 );
