@@ -9,6 +9,7 @@ import IClass from "../../interfaces/classInterface";
 import { Link } from "react-router-dom";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Button } from "react-bootstrap";
+import Confirmation from "../../components/Modals/Confirmation";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -21,9 +22,34 @@ const Students = () => {
     api.get("/classes").then((res) => setClasses(res.data.classes));
   }, []);
 
-  const [show, setShow] = useState(false);
-  const openModal = () => setShow(true);
-  const closeModal = () => setShow(false);
+  // Student to update or delete
+  const [studentToChange, setStudentToChange] = useState<IStudent | any>({
+    _id: '',
+    name: '',
+    phone: '',
+    classes: []
+  });
+
+  // New Student Modal
+  const [showStudentModal, setShowStudentModal] = useState(false);
+  const openStudentModal = () => setShowStudentModal(true);
+  const closeStudentModal = () => setShowStudentModal(false);
+
+  // Delete Confirmation Modal
+  const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] =
+    useState(false);
+  const openDeleteConfirmationModal = async (student: IStudent) => {
+    await setStudentToChange(student);
+    setShowDeleteConfirmationModal(true);
+  };
+  const closeDeleteConfirmationModal = () =>
+    setShowDeleteConfirmationModal(false);
+
+  // Delete student function
+  const deleteStudent = async (studentId: string) => {
+    await api.delete(`/students/${studentId}`);
+    window.location.reload();
+  }
 
   return (
     <div className="fullPage">
@@ -33,7 +59,7 @@ const Students = () => {
           <h1>Alunos</h1>
           <button
             className="btn btn-lg btn-primary"
-            onClick={() => openModal()}
+            onClick={() => openStudentModal()}
           >
             Novo Aluno
           </button>
@@ -87,7 +113,7 @@ const Students = () => {
                       <Button
                         variant="outline-danger"
                         className="mx-2"
-                        // onClick=(() => showModal(message, functionToExecuteOnConfirmation))
+                        onClick={() => openDeleteConfirmationModal(student)}
                       >
                         <MdDelete />
                       </Button>
@@ -100,11 +126,23 @@ const Students = () => {
         </div>
 
         <NewStudentModal
-          show={show}
-          onHide={closeModal}
-          closemodal={closeModal}
+          show={showStudentModal}
+          onHide={closeStudentModal}
+          closemodal={closeStudentModal}
           backdrop="static"
           classes={classes}
+        />
+
+        <Confirmation
+          show={showDeleteConfirmationModal}
+          onHide={closeDeleteConfirmationModal}
+          closemodal={closeDeleteConfirmationModal}
+          backdrop="static"
+          studentid={studentToChange._id}
+          studentname={studentToChange.name}
+          actionname='Apagar'
+          actionmessage='O aluno será apagado do sistema para sempre. Esta ação é irreversível.'
+          action={deleteStudent}
         />
       </div>
     </div>
