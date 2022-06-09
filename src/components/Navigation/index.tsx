@@ -23,12 +23,15 @@ const Navigation = () => {
     <nav className="mb-nav">
       <div className="mb-nav-links">
         <Link
-          className={`btn ${checkRoute("/home", location.pathname)} mb-nav-link `}
+          className={`btn ${checkRoute(
+            "/home",
+            location.pathname
+          )} mb-nav-link `}
           to="/"
         >
           <MdDashboard className="mb-icon" /> Página Inicial
         </Link>
-        <Link
+        {/* <Link
           className={`btn ${checkRoute(
             "/reports",
             location.pathname
@@ -36,7 +39,7 @@ const Navigation = () => {
           to="/reports"
         >
           <MdInsertDriveFile className="mb-icon" /> Semanários
-        </Link>
+        </Link> */}
         <Link
           className={`btn ${checkRoute(
             "/classes",
@@ -55,7 +58,7 @@ const Navigation = () => {
         >
           <MdVerifiedUser className="mb-icon" /> Alunos
         </Link>
-        <Link
+        {/* <Link
           className={`btn ${checkRoute(
             "/courses",
             location.pathname
@@ -63,7 +66,7 @@ const Navigation = () => {
           to="/courses"
         >
           <MdInsertDriveFile className="mb-icon" /> Cursos
-        </Link>
+        </Link> */}
       </div>
       <div className="mb-profile-wrapper">
         <img className="mb-profile-pic" src={profilePicture} alt="profile" />

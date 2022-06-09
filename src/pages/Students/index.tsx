@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Button } from "react-bootstrap";
 import Confirmation from "../../components/Modals/Confirmation";
+import EditStudentModal from "../../components/Modals/EditStudent";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -44,6 +45,16 @@ const Students = () => {
   };
   const closeDeleteConfirmationModal = () =>
     setShowDeleteConfirmationModal(false);
+
+  // Edit Student Modal
+  const [showEditStudentModal, setShowEditStudentModal] =
+    useState(false);
+  const openEditStudentModal = async (student: IStudent) => {
+    await setStudentToChange(student);
+    setShowEditStudentModal(true);
+  };
+  const closeEditStudentModal = () =>
+    setShowEditStudentModal(false);
 
   // Delete student function
   const deleteStudent = async (studentId: string) => {
@@ -106,7 +117,7 @@ const Students = () => {
                       <Button
                         variant="outline-warning"
                         className="mx-2"
-                        // onClick=(() => showModal(message, functionToExecuteOnConfirmation))
+                        onClick={() => openEditStudentModal(student)}
                       >
                         <MdEdit />
                       </Button>
@@ -130,6 +141,15 @@ const Students = () => {
           onHide={closeStudentModal}
           closemodal={closeStudentModal}
           backdrop="static"
+          classes={classes}
+        />
+
+        <EditStudentModal
+          show={showEditStudentModal}
+          onHide={closeEditStudentModal}
+          closemodal={closeEditStudentModal}
+          backdrop="static"
+          student={studentToChange}
           classes={classes}
         />
 
